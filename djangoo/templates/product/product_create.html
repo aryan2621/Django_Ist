@@ -1,0 +1,19 @@
+{% extends "nav.html" %} {% block content %}
+
+<form method="POST">
+  {% csrf_token %}
+  <!-- <input
+    type="text"
+    name="title"
+    id=""
+    class="form-control"
+    placeholder="Enter"
+  />
+  -->
+  
+  <input type="submit" value="save" /> 
+
+  {{form.as_p}}
+</form>
+
+{% endblock content %}

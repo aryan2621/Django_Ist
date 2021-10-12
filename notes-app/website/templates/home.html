@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1>Notes</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+
+      <th scope="col">Notes</th>
+      <th scope="col">Date</th>
+      <th scope="col">Actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for note in user.notes %}
+
+    <tr>
+      <td>{{note.id}}</td>
+
+      <td>{{note.data}}</td>
+      <td>{{note.date}}</td>
+      <td><button type="button" class="close btn  btn-danger" onClick="deleteNote({{ note.id }})">
+          <span aria-hidden="true">&times;</span>
+        </button></td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+<form method="POST">
+  <textarea name="note" id="note" class="form-control"></textarea>
+  <br />
+  <div>
+    <button type="submit" class="btn btn-primary w-100">Add Note</button>
+  </div>
+</form>
+{% endblock %}

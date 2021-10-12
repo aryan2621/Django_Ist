@@ -1,0 +1,15 @@
+{% extends "nav.html" %} {% block content %}
+
+<h1>About page</h1>
+{{request.user.is_authenticated}} {% include "footer.html" %}
+
+<h2>{{mytitle|capfirst}}</h2>
+{{html|striptags}}
+<ul>
+  {% for list in mylist %}
+
+  <li>{{list|add:55}}</li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}

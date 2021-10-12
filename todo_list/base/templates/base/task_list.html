@@ -1,0 +1,49 @@
+{% extends "./main.html" %} {% block content %} {% if request.user.is_authenticated %}
+<div class="container" style="display: flex; justify-content: space-between">
+  <h3>{{request.user}}</h3>
+  <a class="btn btn-light" href="{% url 'logout' %}">Logout</a>
+  {% else %}
+  <a class="btn btn-light" href="{% url 'login' %}">Login</a>
+  {% endif %}
+</div>
+
+<hr />
+<h2>My To do list</h2>
+<a class="btn btn-warning" href="{% url 'task-create' %}">New Task</a>
+
+<form method="GET">
+  <div class="form-group mt-3 mb-3">
+    <input
+      class="form-control"
+      type="text"
+      name="search-area"
+      value="{{search_input}}"
+    />
+  </div>
+  <input type="submit" class="btn btn-success" value="Search" />
+</form>
+
+<table class="table">
+  <tr>
+    <th>Item</th>
+    <th>View</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+  {% for task in object_list %}
+  <tr>
+    <td>{{task.title}}</td>
+    <td><a class="btn btn-info" href="{% url 'task' task.id %}">View</a></td>
+    <td>
+      <a class="btn btn-muted" href="{% url 'task-update' task.id %}">Edit</a>
+    </td>
+    <td>
+      <a class="btn btn-danger" href="{% url 'task-delete' task.id%}">Delete</a>
+    </td>
+  </tr>
+  {% empty %}
+  <h3>No Items in List</h3>
+  {% endfor %}
+</table>
+
+{% endblock content %}

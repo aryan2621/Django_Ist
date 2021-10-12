@@ -1,0 +1,15 @@
+{% extends "./main.html" %} {% block content %}
+
+<h2>Regsiter</h2>
+
+<form method="post">
+  {% csrf_token %} {{form.as_p}}
+  <input class="btn btn-success" type="submit" value="Regsiter" />
+</form>
+
+<p>
+  Already have the account ?
+  <a class="btn btn-info" href="{% url 'login' %}">Login</a>
+</p>
+
+{% endblock content %}
